@@ -6,4 +6,12 @@ public static class SampleInputs
         10
         LOVEHEAVYE
         """;
+
+    public const string Map1 = """
+        3 3
+        ...
+        ...
+        ...
+        0 0
+        """;
 }

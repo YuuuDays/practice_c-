@@ -4,10 +4,11 @@ class Program
 {
     static void Main()
     {
-        string inputString = SampleInputs.Love;
+        // sample入力値
+        string inputString = SampleInputs.Map1;
         Console.SetIn(new StringReader(inputString));
-        
-        LoveSubsequence.Run();
+    
+        Practices.Run1();
     }
 }
-// LoveSubsequence.Run();
+
