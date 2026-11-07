@@ -23,45 +23,71 @@ public static class Practices
     // Map1
     public static void Run1()
     {
-        string[] inputNum = Console.ReadLine().Split(' ');
-        int h = int.Parse(inputNum[0]);
-        int w = int.Parse(inputNum[1]);
+        // 1行目：マップの行数（列数は各行の文字列の長さでわかるので使わない）
+        int[] size = Console.ReadLine()!.Split(' ').Select(int.Parse).ToArray();
+        int h = size[0];
 
-        char[,] inputArray = new char[h, w];
-
-        for (int i = 0; i < h; i++)
+        // 2行目から：マップを1行ずつcharの配列にして読む
+        char[][] map = new char[h][];
+        for (int y = 0; y < h; y++)
         {
-
-            string s = Console.ReadLine() ?? "";
-            for (int j = 0; j < w; j++)
-            {
-                inputArray[i, j] = s[j];
-            }
-        }
-        // 入力値検査
-
-        // string s = Console.ReadLine() ?? "";
-        string[] inputConvertNum = Console.ReadLine().Split(' ');
-        int hNum = int.Parse(inputConvertNum[0]);
-        int wNum = int.Parse(inputConvertNum[1]);
-
-        if(inputArray[hNum, wNum] == '.')
-        {
-            inputArray[hNum, wNum] = '#';
-        }
-        else
-        {
-            inputArray[hNum, wNum] = '.';
+            map[y] = Console.ReadLine()!.ToCharArray();
         }
 
-        for (int i = 0; i < h; i++)
+        // 最後の行：入れ替えるマスの位置
+        int[] pos = Console.ReadLine()!.Split(' ').Select(int.Parse).ToArray();
+        int py = pos[0];
+        int px = pos[1];
+
+        // . なら # に、それ以外なら . にする
+        map[py][px] = map[py][px] == '.' ? '#' : '.';
+
+        // 1行ずつ文字列に戻して表示する
+        foreach (char[] row in map)
         {
-            for (int j = 0; j < w; j++)
-            {
-                Console.Write(inputArray[i, j]);
-            }
-            Console.WriteLine();
+            Console.WriteLine(new string(row));
         }
-        // Console.WriteLine("Hello, World!");
+
+        // ---- 元のコード ----
+        // string[] inputNum = Console.ReadLine().Split(' ');
+        // int h = int.Parse(inputNum[0]);
+        // int w = int.Parse(inputNum[1]);
+        //
+        // char[,] inputArray = new char[h, w];
+        //
+        // for (int i = 0; i < h; i++)
+        // {
+        //
+        //     string s = Console.ReadLine() ?? "";
+        //     for (int j = 0; j < w; j++)
+        //     {
+        //         inputArray[i, j] = s[j];
+        //     }
+        // }
+        // // 入力値検査
+        //
+        // // string s = Console.ReadLine() ?? "";
+        // string[] inputConvertNum = Console.ReadLine().Split(' ');
+        // int hNum = int.Parse(inputConvertNum[0]);
+        // int wNum = int.Parse(inputConvertNum[1]);
+        //
+        // if(inputArray[hNum, wNum] == '.')
+        // {
+        //     inputArray[hNum, wNum] = '#';
+        // }
+        // else
+        // {
+        //     inputArray[hNum, wNum] = '.';
+        // }
+        //
+        // for (int i = 0; i < h; i++)
+        // {
+        //     for (int j = 0; j < w; j++)
+        //     {
+        //         Console.Write(inputArray[i, j]);
+        //     }
+        //     Console.WriteLine();
+        // }
+        // // Console.WriteLine("Hello, World!");
     }
 }
